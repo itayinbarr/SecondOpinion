@@ -5,7 +5,7 @@ data
 .DS_Store
 
 # model
-MRIEmotionsScanner/BrainModel/
+MRITumorScanner/BrainModel/
 
 # dotenv
 .env

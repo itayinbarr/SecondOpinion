@@ -1,61 +1,57 @@
-BRAINPUT
+NEURALITY
 ==============================
 
-MNE Python based software, for automated EEG data preprocessing.
+A dense neural network model, trained to classify an MRI scan into one of 3 types of brain tumors, or a healthy scan.
 
 Getting Started
 ------------
 
-I recommend storing the raw data files in
+I recommend storing the patient images in
 
-`./data/raw`
+`./patients`
 
 From within the repo directory run
 
-`./EEGDataPrep/runner.py`
+`./MRITumorScanner/runner.py`
 
-You can now load a file (it has to be a supported type by MNE Python). For a full list of supported file types, 
+You can now load a file (it has to be a supported photo type). For a full list of supported file types, 
 go to the bottom of the file.
 
-For plotting the raw data, press the Plot Raw button. 
+For analyzing the photo, click Analyze.
 
-For starting to preprocess the file, press Step One. After it finishes, it loads a plot for you to choose bad channels 
-to remove. After clicking on the bad channels, close the plot window and press Step Two.
+When finished, press Exit button.
 
-After pressing step two and the software finishes processing, it loads a plot of the processed epochs to choose 
-manually if we see a bad epoch.
+-----
+About Training & Dataset
+--
 
-When finished, press Save Epochs. You can access the preprocessed file in:  
-
-`./data/preprocessed`
+The dataset was derived from public domain pictures, which were verified by a certified doctor for different
+machine learning projects. Most of the pictures were found on Kaggle.
 
 Project Organization
 ------------
 
     ├── README.md                    <- The top-level README for developers using this project
     ├── LICENSE.md                   <- MIT
-    ├── .gitignore                   <- For envornment directories
-    ├── data                         <- Data directories, containing both raw and preprocessed (recommended to store here)
-    │   ├── processed                <- Preprocessed files directory
-    │   └── raw                      <- Raw files directory
+    ├── .gitignore                   <- For environment directories
+    ├── data                         <- Data directories, .gitignored (recommended to store here)
+    │   ├── training                 <- Training images directory
+    │   └── testing                  <- Testing images directory
     │
-    ├── EEGDataPrep                  <- Containing the software itself
-    │   ├── dataprep                 <- Directory of all functions of the software
-    │   │   └── dataprep.py          <- All functions of the software
-    │   │
-    │   └── front                    <- Directory of GUI code
-    │   │   └── front.py             <- Frontend code
-    │   │
-    │   ├── __init__.py              <- For syntax purposes
+    ├── MRITumorScanner              <- Containing the software itself
+    │   ├── BrainModel               <- Directory of trained model
+    │   ├── front.py                 <- Directory of GUI code
+    │   ├── back.py                  <- Directory of backend code
     │   └── runner.py                <- Running the software
     │
-    └── tests                        <- Tests directory
+    └── tests                        <- Tests directory, .gitignored
         └── backend_tests.py         <- Unit tests of backend
  
 Dependencies
 ------------
 
 - Python
-- MNE Python
+- Keras
+- TensorFlow
 - TKInter
 --------

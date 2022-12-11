@@ -1,12 +1,12 @@
-NEURALITY
+Second Opinion
 ==============================
 
-A dense neural network model, trained to classify an MRI scan into one of 3 types of brain tumors, or a healthy scan.
+A dense neural network model I trained, to classify an MRI scan into one of 3 types of brain tumors, or a healthy scan.
 
 Getting Started
 ------------
 
-I recommend storing the patient images in
+I recommend storing patient images in
 
 `./patients`
 

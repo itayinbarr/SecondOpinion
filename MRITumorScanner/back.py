@@ -70,18 +70,15 @@ def model_creating():
 
 
 # Loading the pretrained model for you own use
-def load_model():
+def use_model(path):
     model = keras.models.load_model("BrainModel")
     img = tf.keras.utils.load_img(
-        '../patients/image(1).jpg', target_size=(512, 512)
+        path, target_size=(512, 512)
     )
     img_array = tf.keras.utils.img_to_array(img)
     img_array = tf.expand_dims(img_array, 0)  # Create a batch
 
     predictions = model.predict(img_array)
     score = tf.nn.softmax(predictions[0])
-    class_names = ['glioma', 'meningioma', 'no tumor', 'pituitary']
-    print(
-        "The patient has {} with a {:.2f} percent confidence."
-            .format(class_names[np.argmax(score)], 100 * np.max(score))
-    )
+    class_names = ['Glioma', 'Meningioma', 'no known tumor', 'Pituitary']
+    return [class_names[np.argmax(score)], 100 * np.max(score)]

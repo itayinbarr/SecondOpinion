@@ -1,18 +1,11 @@
-import matplotlib.pyplot as plt
 import numpy as np
-import os
-import PIL
 import tensorflow as tf
-import matplotlib.pyplot as plt
 import keras
-from PIL import Image
-
-# Used once in runner, then commented out
-from numpy import asarray
 
 
+# Triggered once in runner in order to create and train the model, then commented out.
 def model_creating():
-    # Loading training dataset from image directory
+    # Loading images as a training dataset from my image directory
     train_ds = tf.keras.utils.image_dataset_from_directory(
         '../data/training',
         validation_split=0.2,
@@ -21,7 +14,7 @@ def model_creating():
         image_size=(512, 512),
         batch_size=32)
 
-    # Loading val dataset from image directory
+    # Loading validation dataset from image directory
     val_ds = tf.keras.utils.image_dataset_from_directory(
         '../data/testing',
         validation_split=0.2,
@@ -30,6 +23,7 @@ def model_creating():
         image_size=(512, 512),
         batch_size=32)
 
+    # Getting class names and fixing noises
     class_names = train_ds.class_names
     AUTOTUNE = tf.data.AUTOTUNE
     train_ds = train_ds.cache().shuffle(1000).prefetch(buffer_size=AUTOTUNE)
@@ -55,7 +49,7 @@ def model_creating():
                   loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
                   metrics=['accuracy'])
 
-    # Fitting the model
+    # Fitting the model, will do more epochs if the size of dataset will allow to.
     epochs = 1
     model.fit(
         train_ds,
@@ -65,20 +59,24 @@ def model_creating():
 
     # Saving the model
     model.save('BrainModel')
-    predictions = model.predict(val_ds)
-    print(class_names[np.argmax(predictions[0])])
 
 
-# Loading the pretrained model for you own use
+# Loading my pretrained model for re-use,
+# triggered by Analyze button in GUI.
 def use_model(path):
+    # Loading model
     model = keras.models.load_model("BrainModel")
+    # Using the picture loaded by user
     img = tf.keras.utils.load_img(
         path, target_size=(512, 512)
     )
+    # Turning the image to array
     img_array = tf.keras.utils.img_to_array(img)
-    img_array = tf.expand_dims(img_array, 0)  # Create a batch
-
+    # Create a batch
+    img_array = tf.expand_dims(img_array, 0)
+    # Getting result and confidence level
     predictions = model.predict(img_array)
     score = tf.nn.softmax(predictions[0])
     class_names = ['Glioma', 'Meningioma', 'no known tumor', 'Pituitary']
+    # Returning the result to the GUI
     return [class_names[np.argmax(score)], 100 * np.max(score)]

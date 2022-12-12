@@ -7,8 +7,7 @@ from tkinter import *
 # Introduction
 print("***************************")
 print("***************************")
-print("***************************")
-print("Welcome to SecondOpinion - A dense neural network model I trained, to recognize 3 types of brain tumors.")
+print("Welcome to SecondOpinion - A convolutional neural network model I trained, to recognize 3 types of brain tumors.")
 print("---------------------------")
 print("I recommend storing the photos in ./patients")
 print("---------------------------")

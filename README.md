@@ -1,7 +1,7 @@
 Second Opinion
 ==============================
 
-A dense neural network model I trained, to classify an MRI scan into one of 3 types of brain tumors, or a healthy scan.
+A convolutional neural network model I trained, to classify an MRI scan into one of 3 types of brain tumors, or a healthy scan.
 
 This project demonstrates the process of building and training a dense neural network model.
 The model was trained for classification.
@@ -43,8 +43,8 @@ Project Organization
     │
     ├── MRITumorScanner              <- Containing the software itself
     │   ├── BrainModel               <- Directory of trained model
-    │   ├── front.py                 <- Directory of GUI code
-    │   ├── back.py                  <- Directory of backend code
+    │   ├── front.py                 <- GUI code
+    │   ├── back.py                  <- backend code
     │   └── runner.py                <- Running the software
     │
     └── tests                        <- Tests directory, .gitignored

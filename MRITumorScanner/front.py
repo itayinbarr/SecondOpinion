@@ -2,7 +2,6 @@ from tkinter import *
 from tkinter.filedialog import askopenfilename
 from tkinter import messagebox
 from back import *
-from PIL import ImageTk, Image
 
 
 # Class of software window
@@ -17,7 +16,7 @@ class MyWindow:
         self.lblTitle = Label(win, font="Helvetica 16 bold", text='Second Opinion - MRI Brain Tumor Scan')
         self.lblSubtitle = Label(win, text='Choose an MRI photo')
         self.lblResult = Label(win, font="Helvetica 14 bold", text='')
-        self.lblAcc = Label(win, font="Helvetica 14 bold", text='')
+        self.lblAcc = Label(win, font="Helvetica 14", text='')
         # Buttons
         self.btnOpenFile = Button(win, text='Load Photo', command=self.select_file)
         self.btnRawPlot = Button(win, text='Analyze It', command=self.process_file)
@@ -36,12 +35,12 @@ class MyWindow:
         self.btnOpenFile.place(x=170, y=90)
         self.btnRawPlot.place(x=270, y=90)
 
-    # Triggered when Load File is pressed
+    # Triggered when Load Photo is pressed
     def select_file(self):
-        # All file types working with the software
+        # All file types working with the software.
+        # I can specify types in the future
         filetypes = (
-            #('set files', '*.set'),
-
+            #('jpg files', '*.jpg'),
         )
         self.selectedFile = askopenfilename(filetypes=filetypes, title='Open a file')
         if not self.selectedFile:
@@ -53,9 +52,13 @@ class MyWindow:
             print(f"{self.selectedFile.rsplit('/', 1)[-1].split('.')[0]}", "selected successfully, click "
                                                                            "Analyze to proceed.")
 
+    # Triggered when Analyze is pressed
     def process_file(self):
+        # Getting analysis results from neural network
+        # Result is a list containing the result and confidence level
         result = use_model(self.selectedFile)
-        new_text = 'This MRI picture shows ' + result[0]
+        # Assigning the results as text labels in window
+        new_result = 'This MRI picture shows ' + result[0]
         percent = "With a {} percent confidence.".format(result[1])
-        self.lblResult.config(text=new_text)
+        self.lblResult.config(text=new_result)
         self.lblAcc.config(text=percent)

@@ -6,7 +6,7 @@ A convolutional neural network model I trained, to classify an MRI scan into one
 This project demonstrates the process of building and training a dense neural network model.
 The model was trained for classification.
 
-Demo videos
+Demo video
 ------------
 
 ### Frontend Overview

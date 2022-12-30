@@ -1,7 +1,7 @@
 Second Opinion
 ==============================
 
-A convolutional neural network model I trained, to classify an MRI scan into one of 3 types of brain tumors, or a healthy scan.
+A convolutional neural network model I created & trained, to classify an MRI scan into one of 3 types of brain tumors, or a healthy scan.
 
 This project demonstrates the process of building and training a dense neural network model.
 The model was trained for classification.
